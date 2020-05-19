@@ -1,0 +1,352 @@
+[
+  {
+    "id": "hello",
+    "command": "hello",
+    "description": "Respond when a human says hello!",
+    "script": [
+      {
+        "topic": "default",
+        "script": [
+          {
+            "text": [
+              "Hello Human!",
+              "How do you do?",
+              "Nice to meet you Human.",
+              "Hi!",
+              "How’s it going?",
+              "Hey!",
+              "Hey there!",
+              "Howdy!",
+              "G`day human!",
+              "Salut!",
+              "Ciao!",
+              "Hola!",
+              "Shalom!"
+            ]
+          },
+          {
+            "action": "complete"
+          }
+        ]
+      }
+    ],
+    "triggers": [
+      {
+        "pattern": "hell.*",
+        "type": "regexp",
+        "id": "495"
+      },
+      {
+        "type": "string",
+        "pattern": "hello"
+      },
+      {
+        "type": "string",
+        "pattern": "hey"
+      },
+      {
+        "type": "string",
+        "pattern": "hi"
+      },
+      {
+        "type": "string",
+        "pattern": "howdy"
+      }
+    ],
+    "variables": [],
+    "modified": "2018-12-12T15:23:41.416Z",
+    "name": "hello"
+  },
+  {
+    "command": "ajuda",
+    "botId": 1,
+    "description": "Responde pedido de suporte",
+    "triggers": [
+      {
+        "type": "string",
+        "pattern": "ajuda"
+      }
+    ],
+    "variables": [
+      {
+        "name": "question_1",
+        "type": "string"
+      },
+      {
+        "name": "question_2",
+        "type": "string"
+      },
+      {
+        "name": "question_3",
+        "type": "string"
+      }
+    ],
+    "script": [
+      {
+        "topic": "default",
+        "script": [
+          {
+            "text": [
+              "Olá, em que posso ajudá-lo!"
+            ]
+          },
+          {
+            "action": "complete"
+          }
+        ]
+      },
+      {
+        "topic": "on_timeout",
+        "script": [
+          {
+            "text": [
+              "Looks like you got distracted. We can continue later."
+            ]
+          },
+          {
+            "action": "timeout"
+          }
+        ]
+      }
+    ],
+    "id": "ajuda",
+    "modified": "2020-05-19T20:16:20.771Z",
+    "name": "ajuda"
+  },
+  {
+    "command": "quick_reply",
+    "botId": 1,
+    "description": "Teste de quick reply",
+    "triggers": [
+      {
+        "pattern": "quiz",
+        "type": "string",
+        "id": 231
+      }
+    ],
+    "variables": [
+      {
+        "name": "command",
+        "type": "string",
+        "id": 372
+      },
+      {
+        "name": "question_1",
+        "type": "string"
+      },
+      {
+        "name": "question_2",
+        "type": "string"
+      },
+      {
+        "name": "question_3",
+        "type": "string"
+      }
+    ],
+    "script": [
+      {
+        "topic": "default",
+        "script": [
+          {
+            "text": [
+              "This is the quick script. Customize me!"
+            ],
+            "collect": {
+              "key": "command",
+              "options": [
+                {
+                  "default": true,
+                  "pattern": "default",
+                  "action": null
+                },
+                {
+                  "pattern": "bolacha",
+                  "type": "string",
+                  "action": "thread_1"
+                },
+                {
+                  "pattern": "biscoito",
+                  "type": "string",
+                  "action": "thread_2"
+                }
+              ],
+              "multiple": false
+            }
+          },
+          {
+            "action": "complete"
+          }
+        ]
+      },
+      {
+        "topic": "on_timeout",
+        "script": [
+          {
+            "text": [
+              "Looks like you got distracted. We can continue later."
+            ]
+          },
+          {
+            "action": "timeout"
+          }
+        ]
+      },
+      {
+        "topic": "thread_1",
+        "script": [
+          {
+            "text": [
+              "Eu sabia que você era carioca!"
+            ]
+          },
+          {
+            "action": "complete"
+          }
+        ]
+      },
+      {
+        "topic": "thread_2",
+        "script": [
+          {
+            "text": [
+              "Então quer dizer que você é paulista!"
+            ]
+          },
+          {
+            "action": "complete"
+          }
+        ]
+      }
+    ],
+    "id": "quick",
+    "modified": "2020-05-19T20:32:37.183Z",
+    "name": "quick_reply"
+  },
+  {
+    "command": "teste",
+    "botId": 1,
+    "description": "Teste de quick reply",
+    "triggers": [
+      {
+        "pattern": "teste",
+        "type": "string",
+        "id": 466
+      }
+    ],
+    "variables": [
+      {
+        "name": "command",
+        "type": "string",
+        "id": 372
+      },
+      {
+        "name": "question_1",
+        "type": "string"
+      },
+      {
+        "name": "question_2",
+        "type": "string"
+      },
+      {
+        "name": "question_3",
+        "type": "string"
+      }
+    ],
+    "script": [
+      {
+        "topic": "default",
+        "script": [
+          {
+            "text": [
+              "Olá humano"
+            ],
+            "collect": null
+          },
+          {
+            "text": [
+              "Qual voce prefere?"
+            ],
+            "collect": {
+              "key": "command",
+              "options": [
+                {
+                  "default": true,
+                  "pattern": "default",
+                  "action": null
+                },
+                {
+                  "pattern": "bolacha",
+                  "type": "string",
+                  "action": "thread_2"
+                },
+                {
+                  "pattern": "biscoito",
+                  "type": "string",
+                  "action": "thread_1"
+                }
+              ],
+              "multiple": false
+            },
+            "quick_replies": [
+              {
+                "title": "Biscoito",
+                "payload": "biscoito",
+                "content_type": "text"
+              },
+              {
+                "title": "Bolacha",
+                "payload": "bolacha",
+                "content_type": "text"
+              }
+            ]
+          },
+          {
+            "action": "complete"
+          }
+        ]
+      },
+      {
+        "topic": "on_timeout",
+        "script": [
+          {
+            "text": [
+              "Looks like you got distracted. We can continue later."
+            ]
+          },
+          {
+            "action": "timeout"
+          }
+        ]
+      },
+      {
+        "topic": "thread_1",
+        "script": [
+          {
+            "text": [
+              "Eu sabia que você era carioca!"
+            ]
+          },
+          {
+            "action": "complete"
+          }
+        ]
+      },
+      {
+        "topic": "thread_2",
+        "script": [
+          {
+            "text": [
+              "Então quer dizer que você é paulista!"
+            ]
+          },
+          {
+            "action": "complete"
+          }
+        ]
+      }
+    ],
+    "id": "teste",
+    "modified": "2020-05-19T21:34:33.498Z",
+    "name": "teste"
+  }
+]
